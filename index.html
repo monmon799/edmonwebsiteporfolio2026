@@ -1200,92 +1200,120 @@ html {
   color: #ddd;
 }
 
-/* ================= GRID ================= */
+/* ================= GRID (A–N CARDS) ================= */
 .appendix-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 15px;
 }
 
-/* ================= CARD ================= */
-.appendix-card {
+/* ================= GLOBAL CARD STYLE (ALL CARDS) ================= */
+.appendix-card,
+.appendix-card-p,
+.appendix-card-q {
+  background: #fff;
+  border-radius: 12px;
+  padding: 12px 14px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  border-left: 4px solid #0d47a1;
+  transition: 0.3s ease;
   display: flex;
   flex-direction: column;
-
-  background: #fff;
-  padding: 10px 12px;   /* 🔥 smaller padding */
-  border-radius: 12px;
-
-  border-left: 4px solid #0d47a1;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-
-  transition: 0.3s ease;
 }
 
-/* hover effect */
-.appendix-card:hover {
-  transform: translateY(-5px) scale(1.02);
+/* hover */
+.appendix-card:hover,
+.appendix-card-p:hover,
+.appendix-card-q:hover {
+  transform: translateY(-5px);
   box-shadow: 0 15px 30px rgba(13,71,161,0.2);
 }
 
-/* ================= TOP (TITLE + ICON) ================= */
-.appendix-card .top {
+/* ================= TOP ================= */
+.appendix-card .top,
+.appendix-card-p .top,
+.appendix-card-q .top {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  margin-bottom: 6px;
+  align-items: center;
+  margin-bottom: 4px;
 }
 
-/* TITLE CENTER */
-.appendix-card .top h3 {
-  flex: 1;
-  text-align: center;
+/* TITLE */
+.appendix-card h3,
+.appendix-card-p h3,
+.appendix-card-q h3 {
   font-size: 15px;
-  margin: 0;
   font-weight: 600;
   color: #041eb4;
-}
-
-/* ICON RIGHT */
-.appendix-card .icon {
-  font-size: 50px;
-  color: #0d47a1;
-  min-width: 30px;
-  text-align: right;
-}
-
-/* ================= CONTENT ================= */
-.appendix-card .content {
-  margin-bottom: 8px;
-  text-align: center;   /* 🔥 CENTER TEXT */
-}
-
-/* description */
-.appendix-card .content p {
-  font-size: 13px;
   margin: 0;
+  text-align: center;
+  flex: 1;
+}
+
+/* ICON */
+.appendix-card .icon,
+.appendix-card-p .icon,
+.appendix-card-q .icon {
+  font-size: 40px;
+  color: #0d47a1;
+}
+
+/* ================= CONTENT FIX (NO SPACING PROBLEM) ================= */
+.appendix-card .content,
+.appendix-card-p .content,
+.appendix-card-q .content {
+  margin: 0;
+  padding: 0;
+}
+
+/* PARAGRAPH FIX */
+.appendix-card .content p,
+.appendix-card-p .content p,
+.appendix-card-q .content p {
+  margin: 0;
+  padding: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  text-align: justify;
   color: #444;
-  line-height: 1.4;
-    text-align: center;
 }
 
 /* ================= BUTTON ================= */
-.appendix-card button {
+.appendix-card button,
+.appendix-card-p button,
+.appendix-card-q button {
+  margin-top: 8px;
   padding: 8px 10px;
   font-size: 14px;
-
-  border-radius: 6px;
   border: none;
+  border-radius: 6px;
   background: #0d47a1;
   color: #fff;
   cursor: pointer;
-
-  align-self: flex-start;
   transition: 0.2s;
+  align-self: flex-start;
 }
 
-.appendix-card button:hover {
+.appendix-card button:hover,
+.appendix-card-p button:hover,
+.appendix-card-q button:hover {
   background: #08306b;
+}
+
+/* ================= P & Q ROW (SIDE BY SIDE) ================= */
+.appendix-row-pq {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 15px;
+  flex-wrap: wrap;
+}
+
+.appendix-card-p,
+.appendix-card-q {
+  flex: 1;
+  min-width: 280px;
 }
 
 /* ================= MODAL ================= */
@@ -1294,53 +1322,36 @@ html {
   position: fixed;
   inset: 0;
   z-index: 9999;
-
   background: rgba(0,0,0,0.95);
-
   align-items: center;
   justify-content: center;
 }
 
-/* show modal */
 .modal.show {
   display: flex;
 }
 
-/* image */
 .modal-content {
   width: 85vw;
   height: 85vh;
   max-width: 1200px;
-  max-height: 90vh;
-
   object-fit: contain;
   border-radius: 12px;
-
   animation: zoomIn 0.25s ease;
 }
 
-/* close button */
 .close {
   position: fixed;
   top: 15px;
   right: 20px;
-
   font-size: 45px;
   color: #fff;
   cursor: pointer;
-  z-index: 10000;
 }
 
-/* animation */
 @keyframes zoomIn {
-  from {
-    transform: scale(0.7);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
+  from { transform: scale(0.7); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
 }
 
 /* ================= RESPONSIVE ================= */
@@ -1355,10 +1366,176 @@ html {
     grid-template-columns: 1fr;
   }
 
-  .appendix-hero .main-title {
-    font-size: 28px;
+  .appendix-row-pq {
+    flex-direction: column;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ================= ETHICS CARD ONLY ================= */
+.ethics-card-o {
+  max-width: 1200px;   /* 🔥 pinalaki from 1000px */
+  width: 100%;          /* 🔥 responsive para di sumobra sa screen */
+  margin: 25px auto;
+  background: #ffffff;
+  border-left: 5px solid #0d47a1;
+  border-radius: 12px;
+  padding: 28px 30px;  /* 🔥 mas maluwag loob */
+  box-shadow: 0 6px 18px rgba(0,0,0,0.10);
+  transition: 0.3s ease;
+}
+
+/* hover effect */
+.ethics-card-o:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+/* HEADER */
+.ethics-top-o {
+  text-align: left;
+  margin-bottom: 12px;
+}
+
+.ethics-top-o h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0d47a1;
+}
+
+/* CONTENT */
+.ethics-content-o {
+  text-align: left; /* 🔥 FORCE LEFT */
+  font-size: 14px;
+  line-height: 1.8;
+  color: #333;
+}
+
+/* INTRO */
+.ethics-intro-o {
+  text-indent: 35px;
+  margin-bottom: 12px;
+}
+
+/* SUBTITLE */
+.ethics-subtitle-o {
+  margin: 10px 0;
+  font-weight: 600;
+  color: #1e235b;
+}
+
+/* LIST */
+.ethics-list-o {
+  padding-left: 22px;
+  margin-top: 10px;
+}
+
+.ethics-list-o li {
+  margin-bottom: 10px;
+  line-height: 1.7;
+  text-align: left;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .ethics-card-o {
+    margin: 10px;
+    padding: 15px;
+  }
+}
+
+
+
+
+
+
+
+
+
 
 .modal {
   display: none;
@@ -1416,6 +1593,29 @@ html {
 .right {
   right: 20px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -3574,8 +3774,6 @@ th {
 </div>
 
 </div>
-
-</div>
 <br><br><br>
 <div class="section-title-eval">
   Student Internship Evaluation
@@ -3807,44 +4005,88 @@ th {
     </div>
     </div>
 
+
+
+
+
+
+
+
+
+
     <!-- O -->
-    <div class="appendix-card">
-      <div class="top">
-        <h3>Appendix O - Code of Ethics</h3>
-        <div class="icon"><i class="fa-solid fa-scale-balanced"></i></div>
-      </div>
-      <div class="content">
-        <p>Rules and ethical guidelines for student interns.</p>
-      </div>
-      <button onclick="openModal('img/o.jpg')">View Document</button>
-    </div>
+    <div class="ethics-card-o" id="appendix-code-ethics-o">
+
+  <div class="ethics-top-o">
+    <h3>Appendix O - Code of Ethics</h3>
+  </div>
+
+  <div class="ethics-content-o">
+
+    <p class="ethics-intro-o">
+      I will use my special knowledge and skills for the benefit of the public. I will serve employees and clients with integrity, subject to an overriding responsibility to the public interest, and I will strive to enhance the competence and prestige of the profession.
+    </p>
+
+    <p class="ethics-subtitle-o"><b>By these means:</b></p>
+
+    <ol class="ethics-list-o">
+      <li>I will promote public knowledge, understanding, and appreciation of Information Technology.</li>
+      <li>I will consider the general welfare and public good in the performance of my work.</li>
+      <li>I will advertise goods or professional services in a clear and truthful manner.</li>
+      <li>I will comply and strictly abide by intellectual property laws and related IT laws.</li>
+      <li>I will accept full responsibility for my work and act with professionalism.</li>
+      <li>I will make truthful statements about my skills and services.</li>
+      <li>I will not disclose confidential information without consent.</li>
+      <li>I will strive for high quality in all products and services.</li>
+      <li>I will not participate in illegal IT systems or activities.</li>
+      <li>I will continuously improve my IT professional skills.</li>
+    </ol>
+
+  </div>
+
+</div>
 
     <!-- P -->
-    <div class="appendix-card">
-      <div class="top">
-        <h3>Appendix P - Curriculum Vitae</h3>
-        <div class="icon"><i class="fa-solid fa-file"></i></div>
-      </div>
-      <div class="content">
-        <p>Updated resume including education and experience.</p>
-      </div>
-      <button onclick="openModal('img/p.jpg')">View Document</button>
+<div class="appendix-row-pq">
+
+  <!-- P (LEFT) -->
+  <div class="appendix-card-p" id="appendix-p">
+    <div class="top">
+      <h3>Appendix P - Curriculum Vitae</h3>
+      <div class="icon"><i class="fa-solid fa-file"></i></div>
     </div>
 
-    <!-- Q -->
-    <div class="appendix-card">
-      <div class="top">
-        <h3>Appendix Q - Portfolio Evaluation</h3>
-        <div class="icon"><i class="fa-solid fa-file-signature"></i></div>
-      </div>
-      <div class="content">
-        <p>Final evaluation form for OJT portfolio.</p>
-      </div>
-      <button onclick="openModal('img/q.jpg')">View Document</button>
+    <div class="content">
+      <p>Updated resume including education and experience.</p>
     </div>
+
+    <button onclick="openGallery(['img/simple.jpg'])">
+      View Document
+    </button>
+  </div>
+
+  <!-- Q (RIGHT) -->
+  <div class="appendix-card-q" id="appendix-q">
+    <div class="top">
+      <h3>Appendix Q - Portfolio Evaluation</h3>
+      <div class="icon"><i class="fa-solid fa-file-signature"></i></div>
+    </div>
+
+    <div class="content">
+      <p>Final evaluation form for OJT portfolio.</p>
+    </div>
+
+    <button onclick="openModal('img/q.jpg')">
+      View Document
+    </button>
+  </div>
+
+</div>
 
   </div>
 </div>
+
+
 
 <!-- MODAL -->
 <div id="imgModal" class="modal" onclick="closeModal()">
