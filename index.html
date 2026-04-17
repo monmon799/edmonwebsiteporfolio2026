@@ -339,16 +339,23 @@ body {
   margin-bottom: 5px;
 }
 
-/* TABLE OF CONTENTS */
-/* CARD */
-/* TABLE OF CONTENT CARD (NEW CLASS) */
+
+
+
+
+ /* =========================
+   TABLE OF CONTENTS CARD
+========================= */
 .toc-cardi {
   text-align: left;
   width: 100%;
   max-width: 1100px;
   border: 1px solid #e0e0e0;
+  position: relative;
+  background: #fff;
 }
 
+/* LEFT BLUE BAR */
 .toc-cardi:not(.hero-card)::before {
   content: "";
   position: absolute;
@@ -359,8 +366,9 @@ body {
   background: #0d47a1;
 }
 
-
-/* WRAPPER */
+/* =========================
+   CONTENT WRAPPER
+========================= */
 .toc-content {
   margin-top: 10px;
   display: flex;
@@ -368,53 +376,95 @@ body {
   gap: 6px;
 }
 
-/* ROW */
+/* =========================
+   ROW STYLE
+========================= */
 .toc-content p {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   font-size: 15px;
   line-height: 1.6;
   margin: 4px 0;
   cursor: pointer;
   transition: 0.25s ease;
+  flex-wrap: wrap; /* 🔥 important */
 }
 
-/* HOVER */
+/* HOVER EFFECT */
 .toc-content p:hover {
   transform: translateX(8px);
   box-shadow: 0 3px 10px rgba(0,0,0,0.08);
 }
 
-/* LEVEL 1 */
+/* =========================
+   LEVELS
+========================= */
 .lvl1 {
   font-weight: 600;
 }
 
-/* LEVEL 2 */
 .lvl2 {
   padding-left: 25px;
   font-size: 14px;
 }
 
-/* 🔥 THE REAL GUHIT FIX (IMPORTANT) */
+/* =========================
+   TEXT FIX
+========================= */
+.toc-content p span {
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  display: inline-block;
+  max-width: 100%;
+}
+
+/* =========================
+   DOT LINE (DESKTOP + MOBILE)
+========================= */
 .toc-content p::after {
   content: "";
   flex: 1;
   border-bottom: 1px dotted rgba(0,0,0,0.45);
   margin-left: 12px;
+  min-width: 20px; /* 🔥 prevents collapse on mobile */
 }
 
-/* TEXT FIX */
-.toc-content p span {
-  white-space: nowrap;
-}
-
-/* OPTIONAL COLOR */
+/* =========================
+   TITLE COLOR
+========================= */
 .toc-content b {
   color: rgb(36, 39, 92);
 }
 
+/* =========================
+   MOBILE RESPONSIVE FIX
+========================= */
+@media (max-width: 768px) {
 
+  .toc-content p {
+    font-size: 13px;
+    align-items: flex-start;
+  }
+
+  .lvl2 {
+    padding-left: 15px;
+  }
+
+  /* KEEP dotted line (important fix) */
+  .toc-content p::after {
+    border-bottom: 1px dotted rgba(0,0,0,0.35);
+    flex: 1;
+    margin-left: 8px;
+  }
+
+  /* better wrapping */
+  .toc-content p span {
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+  }
+}
 
 
 
