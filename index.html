@@ -2473,6 +2473,73 @@ th {
 
 
 
+
+
+
+
+
+
+
+
+
+
+  
+
+/* 🔥 MODAL BACKGROUND */
+.image-modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);
+  justify-content: center;
+  align-items: center;
+}
+
+/* 🔥 IMAGE */
+.image-modal img {
+  max-width: 80%;
+  max-height: 80%;
+  border-radius: 12px;
+  animation: zoomIn 0.3s ease;
+}
+
+/* 🔥 CLOSE BUTTON */
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  font-size: 40px;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close-btn:hover {
+  color: red;
+}
+
+/* 🔥 ANIMATION */
+@keyframes zoomIn {
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* cursor pointer */
+.profile img {
+  cursor: pointer;
+}
+
 </style>
 </head>
 
@@ -2507,7 +2574,7 @@ th {
 <div class="sidebar" id="sidebar">
 
   <div class="profile">
-    <img src="img/profile.jpg">
+     <img src="img/profile.jpg" onclick="showImage(this)">
     <h3>Edmon Brabonga</h3>
     <p>Web Developer • Student • OJT</p>
   </div>
@@ -4467,6 +4534,21 @@ document.addEventListener("keydown", function (e) {
   if (e.key === "ArrowRight") nextImage();
   if (e.key === "ArrowLeft") prevImage();
 });
+
+
+
+  
+function showImage(img) {
+  var modal = document.getElementById("imageModal");
+  var modalImg = document.getElementById("modalImg");
+
+  modal.style.display = "flex";
+  modalImg.src = img.src;
+}
+
+function closeImage() {
+  document.getElementById("imageModal").style.display = "none";
+}
 </script>
 
 </body>
