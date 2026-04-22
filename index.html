@@ -2486,7 +2486,7 @@ th {
   
 
 /* 🔥 MODAL BACKGROUND */
-.image-modal {
+.profile-image-modal {
   display: none;
   position: fixed;
   z-index: 9999;
@@ -2500,15 +2500,15 @@ th {
 }
 
 /* 🔥 IMAGE */
-.image-modal img {
+.profile-image-modal img {
   max-width: 80%;
   max-height: 80%;
   border-radius: 12px;
-  animation: zoomIn 0.3s ease;
+  animation: profileZoom 0.3s ease;
 }
 
 /* 🔥 CLOSE BUTTON */
-.close-btn {
+.profile-close-btn {
   position: absolute;
   top: 20px;
   right: 35px;
@@ -2519,12 +2519,12 @@ th {
   transition: 0.3s;
 }
 
-.close-btn:hover {
+.profile-close-btn:hover {
   color: red;
 }
 
 /* 🔥 ANIMATION */
-@keyframes zoomIn {
+@keyframes profileZoom {
   from {
     transform: scale(0.5);
     opacity: 0;
@@ -2535,8 +2535,8 @@ th {
   }
 }
 
-/* cursor pointer */
-.profile img {
+/* pointer */
+.profile-click {
   cursor: pointer;
 }
 
@@ -2574,7 +2574,7 @@ th {
 <div class="sidebar" id="sidebar">
 
   <div class="profile">
-     <img src="img/profile.jpg" onclick="showImage(this)">
+ <img src="img/profile.jpg" onclick="openProfileImage(this)" class="profile-click">
     <h3>Edmon Brabonga</h3>
     <p>Web Developer • Student • OJT</p>
   </div>
@@ -4548,16 +4548,16 @@ document.addEventListener("keydown", function (e) {
 
 
   
-function showImage(img) {
-  var modal = document.getElementById("imageModal");
-  var modalImg = document.getElementById("modalImg");
+function openProfileImage(img) {
+  var modal = document.getElementById("profileImageModal");
+  var modalImg = document.getElementById("profileModalImg");
 
   modal.style.display = "flex";
   modalImg.src = img.src;
 }
 
-function closeImage() {
-  document.getElementById("imageModal").style.display = "none";
+function closeProfileImage() {
+  document.getElementById("profileImageModal").style.display = "none";
 }
 </script>
 
