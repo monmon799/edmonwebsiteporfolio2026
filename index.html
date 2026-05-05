@@ -2604,7 +2604,8 @@ th {
 
 
 
-  .eval-gallery {
+  
+.eval-gallery {
   display: flex;
   gap: 10px;
 }
@@ -2614,6 +2615,93 @@ th {
   max-width: 250px;
   height: 200px;
   object-fit: cover;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.eval-gallery img:hover {
+  transform: scale(1.05);
+}
+
+
+
+
+/* =========================
+   🔥 MODAL BACKGROUND
+========================= */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999; /* 🔥 para hindi matakpan ng sidebar */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.9);
+
+  /* optional center fix */
+  justify-content: center;
+  align-items: center;
+}
+
+/* =========================
+   🔥 IMAGE INSIDE MODAL
+========================= */
+.modal img {
+  position: relative;
+  display: block;
+
+  width: 100vw;     /* 🔥 full width */
+  height: 100vh;    /* 🔥 full height */
+
+  object-fit: contain;
+
+  border-radius: 0; /* optional: alisin para full screen feel */
+}
+
+/* =========================
+   🔥 CLOSE BUTTON
+========================= */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  color: white;
+  font-size: 40px;
+  cursor: pointer;
+  z-index: 10000;
+}
+
+/* =========================
+   🔥 NEXT / PREV BUTTONS
+========================= */
+.modal button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10000; /* 🔥 para visible kahit sidebar */
+  background: rgba(0,0,0,0.6);
+  color: white;
+  border: none;
+  font-size: 55px;   /* 🔥 mas malaki */
+  padding: 14px 20px;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+.modal button:hover {
+  background: rgba(0,0,0,0.85);
+}
+
+/* LEFT BUTTON */
+.modal button:nth-of-type(1) {
+  left: 20px;
+}
+
+/* RIGHT BUTTON */
+.modal button:nth-of-type(2) {
+  right: 20px;
 }
 </style>
 </head>
@@ -4031,12 +4119,25 @@ th {
 </div>
 
   <div class="eval-gallery">
-<div class="eval-gallery">
-  <img src="img/ev.jpg" alt="Evaluation 1">
-  <img src="img/ev1.jpg" alt="Evaluation 2">
-  <img src="img/ev2.jpg" alt="Evaluation 3">
-
+<div class="eval-gallery" onclick="openGallery([
+  'img/ev.jpg',
+  'img/ev1.jpg',
+  'img/ev2.jpg'
+])">
+  <img src="img/ev.jpg">
+  <img src="img/ev1.jpg">
+  <img src="img/ev2.jpg">
 </div>
+
+<!-- MODAL -->
+<div id="imgModal" class="modal" onclick="closeModal()">
+  <span class="close">&times;</span>
+  <img id="modalImg">
+
+  <button onclick="prevImage(event)">❮</button>
+  <button onclick="nextImage(event)">❯</button>
+</div>
+
 </div>
 </div>
 
