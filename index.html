@@ -2604,24 +2604,28 @@ th {
 
 
 
-  
 .eval-gallery {
   display: flex;
-  gap: 10px;
+  flex-direction: row;   /* 🔥 siguradong horizontal */
+  gap: 12px;
+  overflow-x: auto;      /* scroll sideways */
+  overflow-y: hidden;    /* 🔥 walang taas baba scroll */
 }
 
 .eval-gallery img {
-  width: 100%;
-  max-width: 250px;
-  height: 200px;
+  flex: 0 0 auto;
+  width: 300px;
+  height: 220px;
   object-fit: cover;
   cursor: pointer;
+  border-radius: 8px;
   transition: 0.3s;
 }
 
 .eval-gallery img:hover {
   transform: scale(1.05);
 }
+
 
 
 
@@ -4116,7 +4120,7 @@ th {
 
 <div class="section-subtitle-eval">
   Official evaluation documentation from I.T Department, Laboratory and Occidental Mindoro State College
-</div>
+</div><br><br>
 
   <div class="eval-gallery">
 <div class="eval-gallery" onclick="openGallery([
